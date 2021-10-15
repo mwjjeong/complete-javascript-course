@@ -51,3 +51,50 @@ function describePopulation(country, population) {
 console.log(describePopulation("China", 1441));
 console.log(describePopulation("Korea", 51));
 console.log(describePopulation("Japan", 100));
+
+// LECTURE: Introduction to Arrays
+const populations = [50, 100, 1300, 200];
+console.log(populations.length == 4);
+const percentages = [
+  percentageOfWorld1(populations[0]),
+  percentageOfWorld1(populations[1]),
+  percentageOfWorld1(populations[2]),
+  percentageOfWorld1(populations[3]),
+];
+console.log(percentages);
+
+// LECTURE: Basic Array Operations (Methods)
+const neighbours = ["Korea", "Japan", "China"];
+neighbours.push("Utopia");
+neighbours.pop();
+
+if (!neighbours.includes("Germany"))
+  console.log("Probably not a central European country :D");
+
+const koreaIdx = neighbours.indexOf("Korea");
+neighbours[koreaIdx] = "South Korea";
+console.log(neighbours);
+
+// LECTURE: Introduction to Objects
+// LECTURE: Object Methods
+const myCountry = {
+  country: "Korea",
+  capital: "Seoul",
+  language: "Korean",
+  population: 50,
+  neighbours: ["North Korea", "Japan", "China"],
+  describe: function () {
+    return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`;
+  },
+  checkIsland: function () {
+    this.isIsland = this.neighbours ? false : true;
+  },
+};
+console.log(myCountry.describe());
+
+// LECTURE: Dot vs. Bracket Notation
+console.log(
+  `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`
+);
+myCountry.population += 2;
+myCountry["population"] -= 2;

@@ -121,4 +121,168 @@ const f = (testValue) => {
 f(3);
 console.log(testValue);
 
+
+const a = 1;
+const b = 2;
+const c = 3;
+
+// Array
+const nums = [a, b, c]; // we usually use it!
+console.log(nums);
+
+//const years = new Array(1, 2, 3, 4); // Array function with new keyword
+
+// indexing
+console.log(nums[0]);
+console.log(nums[2]);
+console.log(nums.length);
+console.log(nums[nums.length - 1]); // index via an expression
+
+nums[1] = 20; // Array is mutable
+nums[2] = "Hello";
+console.log(nums);
+
+// nums = [1, 2, 3, 4, 5]; // Impossible due to this variable is const
+// Element can be all of expressions
+const newArr = ["Minwoo", "Jeong", 2000 - 1995];
+
+// Exercise
+const calcAge = (birthYear) => 2037 - birthYear;
+const years = [1990, 1995, 1997];
+console.log(calcAge(years));
+
+const age1 = calcAge(years[1]);
+console.log(age1);
+
+// Add elements
+const nums = [1, 2, 3];
+const length = nums.push(4);
+console.log(nums, length);
+
+nums.unshift(0);
+console.log(nums);
+
+// Remove elements
+const last = nums.pop();
+console.log(nums, last);
+
+const first = nums.shift();
+console.log(nums, first);
+
+// Search
+console.log(nums.indexOf(0)); // Return the index or -1
+console.log(nums.indexOf(1));
+console.log(nums.includes(0)); // Return boolean
+console.log(nums.includes(1));
+
+
+// Coding Challenge 2
+const calcTip = (bill) => {
+  if (50 <= bill && bill <= 300) return bill * 0.15;
+  return bill * 0.2;
+};
+console.log(calcTip(100));
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(tips);
+console.log(total);
+
+
+// Object
+const minwoo = {
+  firstName: "Minwoo",
+  lastName: "Jeong",
+  age: 2021 - 1995,
+  job: "Developer",
+  friends: ["A", "B", "C"],
+};
+console.log(minwoo);
+
+// getting a property from an object
+console.log(minwoo.firstName); // 1. dot notation
+console.log(minwoo["lastName"]); // 2. brackets notation
+console.log(minwoo["first" + "Name"]);
+const hello = 1;
+console.log(minwoo.hello); // If the object does not have such property
+
+minwoo.location = "Bundang";
+// const inputKey = prompt("What do you wnat ot know about me?");
+//console.log(inputKey, typeof inputKey);
+//console.log(minwoo.inputKey);
+//console.log(minwoo[inputKey]); // The 'inputKey' will be evaluated
+//
+//if (minwoo[inputKey]) console.log(minwoo[inputKey]);
+//else console.log("There is no information for this.");
+//
+// Challenge
+console.log(
+  `${minwoo.firstName} has ${minwoo.friends.length} friends, and his best friened is called ${minwoo.friends[0]}`
+);
+
+
+// Object
+const minwoo = {
+  firstName: "Minwoo",
+  lastName: "Jeong",
+  birthYear: 1995,
+  job: "developer",
+  friends: ["A", "B", "C"],
+  hasDriversLicense: false,
+  // calcAge: (birthYear) => 2021 - birthYear,
+  calcAge: function () {
+    //console.log(this);
+    //return 2021 - this.birthYear;
+    if (!this.age) this.age = 2021 - this.birthYear;
+    return this.age;
+  },
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+  },
+};
+
+console.log(minwoo.calcAge()); // dot notation
+console.log(minwoo.calcAge()); // dot notation
+console.log(minwoo.calcAge()); // dot notation
+console.log(minwoo.calcAge()); // dot notation
+console.log(minwoo.calcAge()); // dot notation
+console.log(minwoo.getSummary());
+
+
+// Coding Challenge 3
+const mark = {
+  name: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    if (!this.bmi) this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+const john = {
+  name: "John Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    if (!this.bmi) this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+if (mark.calcBMI() > john.calcBMI())
+  console.log(
+    `Mark's BMI (${mark.calcBMI()}) is higher than John's ${john.calcBMI()}`
+  );
+else if (john.calcBMI() > mark.calcBMI())
+  console.log(
+    `John's BMI (${mark.calcBMI()}) is higher than Mark's ${john.calcBMI()}`
+  );
+else console.log("Both are the same!");
+
 */
+console.log("From scripts.js");
