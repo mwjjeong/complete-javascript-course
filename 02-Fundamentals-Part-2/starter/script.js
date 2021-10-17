@@ -284,5 +284,87 @@ else if (john.calcBMI() > mark.calcBMI())
   );
 else console.log("Both are the same!");
 
+
+// loop
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+
+
+// Array Looping
+const chars = ["a", "b", "c", "d", "e", "f"];
+const types = [];
+
+for (let i = 0; i < chars.length; i++) {
+  const type = typeof chars[i];
+  console.log(chars[i], type);
+  types.push(type);
+}
+
+console.log(types);
+
+// continue and break
+for (let i = 0; i < chars.length; i++) {
+  const char = chars[i];
+  if (char === "c") continue;
+  else if (char === "e") break;
+  console.log(i, char);
+}
+
+const chars = ["a", "b", "c", "d", "e", "f"];
+
+// Loop backward
+for (let i = chars.length - 1; i >= 0; i--) console.log(i, chars[i]);
+
+for (let exercise = 1; exercise <= 3; exercise++) {
+  for (let rep = 1; rep < 5; rep++) {
+    console.log(`Exercise: ${exercise}, Repeats: ${rep}`);
+  }
+}
+
+// while loop
+let i = 0;
+
+while (i < 10) {
+  console.log(i);
+  i++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+console.log(dice);
+
+while (dice != 6) {
+  console.log(dice);
+  dice = Math.trunc(Math.random() * 6) + 1;
+}
+
+// Coding Challenge 4
+const bills = [100, 2000, 400, 302, 278, 780, 500, 777, 250, 450];
+const tips = [];
+const totals = [];
+
+const calcTip = (bill) => {
+  if (50 <= bill && bill <= 300) return bill * 0.15;
+  return bill * 0.2;
+};
+
+for (let i = 0; i < bills.length; i++) {
+  const bill = bills[i];
+  const tip = calcTip(bill);
+  const total = tip + bill;
+  tips.push(tip);
+  totals.push(total);
+}
+
+console.log(tips, totals);
+
+const calcAverage = (arr) => {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) sum += arr[i];
+  return sum / arr.length;
+};
+
+console.log(calcAverage(totals));
+
 */
 console.log("From scripts.js");

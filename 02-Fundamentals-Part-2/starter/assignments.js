@@ -98,3 +98,44 @@ console.log(
 );
 myCountry.population += 2;
 myCountry["population"] -= 2;
+
+// LECTURE: Iteration: The for Loop
+for (let i = 1; i <= 10; i++) {
+  console.log(`Voter number ${i} is currently voting.`);
+}
+
+// LECTURE: Looping Arrays, Breaking and Continuing
+const percentages2 = [];
+for (let i = 0; i < populations.length; i++) {
+  const percentage = percentageOfWorld1(populations[i]);
+  percentages2.push(percentage);
+}
+
+console.log(percentages, percentages2);
+
+// LECTURE: Looping Backwards and Loops in Loops
+const listOfNeighbours = [
+  ["Canada", "Mexico"],
+  ["Spain"],
+  ["Norway", "Sweden", "Russia"],
+];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+  const neighbours = listOfNeighbours[i];
+  for (let j = 0; j < neighbours.length; j++) {
+    const neighbour = neighbours[j];
+    console.log(`Neighbour: ${neighbour}`);
+  }
+}
+
+// LECTURE: The while Loop
+const percentages3 = [];
+let idx = 0;
+
+while (idx < populations.length) {
+  const percentage = percentageOfWorld1(populations[idx]);
+  percentages3.push(percentage);
+  idx++;
+}
+
+console.log(percentages3);
