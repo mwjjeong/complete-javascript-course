@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(219, 245, 219);
+  font-family: Arial;
+  font-size: 20px;
+  padding: 50px;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+a {
+  background-color: yellowgreen;
+}
+
+.first {
+  color: red;
+}
+
+#your-name {
+  background-color: greenyellow;
+  border: 5px solid rgb(53, 56, 52);
+  padding: 25px;
+  margin: 30px;
+  width: 400px;
+}
+
+#your-name h2 {
+  color: skyblue;
+}
