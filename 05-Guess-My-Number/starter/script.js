@@ -32,16 +32,22 @@ guess.value = 100;
 */
 
 const guessInput = document.querySelector('.guess');
+
 const messageElement = document.querySelector('.message');
-const originalText = messageElement.textContent;
 const scoreElement = document.querySelector('.score');
 const highscoreElement = document.querySelector('.highscore');
 const numberElement = document.querySelector('.number');
+const bodyElement = document.querySelector('body');
 
-let score = Number(scoreElement.textContent);
-let highscore = Number(highscoreElement.textContent);
-const secretNum = Math.trunc(Math.random() * 20) + 1;
-numberElement.textContent = secretNum;
+const initMessage = messageElement.textContent;
+const initScore = Number(scoreElement.textContent);
+const initHighscore = Number(highscoreElement.textContent);
+const initBodyColor = bodyElement.style.backgroundColor;
+const initNumberText = numberElement.textContent;
+
+let score = initScore;
+let highscore = initHighscore;
+let secretNum = Math.trunc(Math.random() * 20) + 1;
 
 const gameLogic = () => {
   if (score === 0) return;
@@ -51,6 +57,8 @@ const gameLogic = () => {
     messageElement.textContent = 'No number!';
   } else if (guess === secretNum) {
     messageElement.textContent = 'Correct Number!';
+    bodyElement.style.backgroundColor = '#60b347';
+    numberElement.textContent = secretNum;
     if (highscore < score) highscore = score;
   } else {
     if (guess > secretNum) messageElement.textContent = 'Too High :(';
@@ -63,4 +71,17 @@ const gameLogic = () => {
 
   if (score === 0) messageElement.textContent = 'You lost the game!';
 };
+
+const reset = () => {
+  messageElement.textContent = initMessage;
+  bodyElement.style.backgroundColor = initBodyColor;
+  scoreElement.textContent = initScore;
+  numberElement.textContent = initNumberText;
+  guessInput.value = '';
+
+  score = initScore;
+  secretNum = Math.trunc(Math.random() * 20) + 1;
+};
+
 document.querySelector('.check').addEventListener('click', gameLogic);
+document.querySelector('.again').addEventListener('click', reset);
