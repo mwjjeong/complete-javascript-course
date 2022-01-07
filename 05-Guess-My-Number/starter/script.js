@@ -49,27 +49,28 @@ let score = initScore;
 let highscore = initHighscore;
 let secretNum = Math.trunc(Math.random() * 20) + 1;
 
-const gameLogic = () => {
-  if (score === 0) return;
-  const guess = Number(guessInput.value);
+const guessNumber = () => {
+  if (score > 0) {
+    const guess = Number(guessInput.value);
+    let message;
 
-  if (!guess) {
-    messageElement.textContent = 'No number!';
-  } else if (guess === secretNum) {
-    messageElement.textContent = 'Correct Number!';
-    bodyElement.style.backgroundColor = '#60b347';
-    numberElement.textContent = secretNum;
-    if (highscore < score) highscore = score;
-  } else {
-    if (guess > secretNum) messageElement.textContent = 'Too High :(';
-    else messageElement.textContent = 'Too Low :(';
-    score--;
+    if (!guess) {
+      message = 'No number!';
+    } else if (guess === secretNum) {
+      message = 'Correct Number!';
+      bodyElement.style.backgroundColor = '#60b347';
+      numberElement.textContent = secretNum;
+      if (highscore < score) highscore = score;
+    } else {
+      score--;
+      if (score === 0) message = 'You lost the game!';
+      else message = guess > secretNum ? 'Too High :(' : 'Too Low :(';
+    }
+
+    scoreElement.textContent = score;
+    highscoreElement.textContent = highscore;
+    messageElement.textContent = message;
   }
-  console.log('Input:', guess);
-  scoreElement.textContent = score;
-  highscoreElement.textContent = highscore;
-
-  if (score === 0) messageElement.textContent = 'You lost the game!';
 };
 
 const reset = () => {
@@ -83,5 +84,5 @@ const reset = () => {
   secretNum = Math.trunc(Math.random() * 20) + 1;
 };
 
-document.querySelector('.check').addEventListener('click', gameLogic);
+document.querySelector('.check').addEventListener('click', guessNumber);
 document.querySelector('.again').addEventListener('click', reset);
