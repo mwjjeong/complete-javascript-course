@@ -21,7 +21,8 @@ function resetPlayerCurrentScore(player) {
 function roleDice() {
   const diceNum = getRandomNum(6);
   document.querySelector('.dice').src = `dice-${diceNum}.png`;
-  updatePlayerScore(diceNum);
+  if (diceNum > 1) updatePlayerScore(diceNum);
+  else changeActivePlayer();
 }
 
 function getRandomNum(max) {
@@ -39,9 +40,13 @@ function changeActivePlayer() {
   const player1 = document.querySelector('.player--0');
   const player2 = document.querySelector('.player--1');
 
-  if (player1.classList.contains('player--active'))
+  if (player1.classList.contains('player--active')) {
     handOverActivePlayer(player1, player2);
-  else handOverActivePlayer(player2, player1);
+    resetPlayerCurrentScore(player1);
+  } else {
+    handOverActivePlayer(player2, player1);
+    resetPlayerCurrentScore(player2);
+  }
 }
 
 function handOverActivePlayer(oldActivePlayer, newActivePlayer) {
