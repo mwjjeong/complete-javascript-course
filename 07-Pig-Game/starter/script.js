@@ -21,7 +21,7 @@ function resetPlayerCurrentScore(player) {
 function roleDice() {
   const diceNum = getRandomNum(6);
   document.querySelector('.dice').src = `dice-${diceNum}.png`;
-  if (diceNum > 1) updatePlayerScore(diceNum);
+  if (diceNum > 1) updatePlayerCurrentScore(diceNum);
   else changeActivePlayer();
 }
 
@@ -29,9 +29,9 @@ function getRandomNum(max) {
   return Math.floor(Math.random() * max) + 1;
 }
 
-function updatePlayerScore(score) {
+function updatePlayerCurrentScore(score) {
   const activePlayer = document.querySelector('.player--active');
-  const currScoreElement = activePlayer.querySelector('.score');
+  const currScoreElement = activePlayer.querySelector('.current-score');
   currScoreElement.textContent =
     Number(currScoreElement.textContent) + Number(score);
 }
