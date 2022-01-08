@@ -15,10 +15,18 @@ function resetGame() {
 function roleDice() {
   const diceNum = getRandomNum(6);
   document.querySelector('.dice').src = `dice-${diceNum}.png`;
+  updatePlayerScore(diceNum);
 }
 
 function getRandomNum(max) {
   return Math.floor(Math.random() * max) + 1;
+}
+
+function updatePlayerScore(score) {
+  const activePlayer = document.querySelector('.player--active');
+  const currScoreElement = activePlayer.querySelector('.score');
+  currScoreElement.textContent =
+    Number(currScoreElement.textContent) + Number(score);
 }
 
 btnNewGame.addEventListener('click', resetGame);
