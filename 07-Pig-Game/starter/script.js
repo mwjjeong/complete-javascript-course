@@ -3,14 +3,19 @@
 const btnNewGame = document.querySelector('.btn--new');
 const btnRoleDice = document.querySelector('.btn--roll');
 
-function resetPlayerScore(player) {
-  player.querySelector('.score').textContent = 0;
-  player.querySelector('.current-score').textContent = 0;
-}
-
 function resetGame() {
   resetPlayerScore(document.querySelector('.player--0'));
   resetPlayerScore(document.querySelector('.player--1'));
+  resetPlayerCurrentScore(document.querySelector('.player--0'));
+  resetPlayerCurrentScore(document.querySelector('.player--1'));
+}
+
+function resetPlayerScore(player) {
+  player.querySelector('.score').textContent = 0;
+}
+
+function resetPlayerCurrentScore(player) {
+  player.querySelector('.current-score').textContent = 0;
 }
 
 function roleDice() {
