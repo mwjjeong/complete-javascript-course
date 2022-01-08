@@ -2,6 +2,7 @@
 
 const btnNewGame = document.querySelector('.btn--new');
 const btnRoleDice = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
 
 function resetGame() {
   resetPlayerScore(document.querySelector('.player--0'));
@@ -54,5 +55,19 @@ function handOverActivePlayer(oldActivePlayer, newActivePlayer) {
   newActivePlayer.classList.add('player--active');
 }
 
+function hold() {
+  updateActivePlayerScore();
+  changeActivePlayer();
+}
+
+function updateActivePlayerScore() {
+  const activePlayer = document.querySelector('.player--active');
+  const currScoreElement = activePlayer.querySelector('.current-score');
+  const scoreElement = activePlayer.querySelector('.score');
+  scoreElement.textContent =
+    Number(currScoreElement.textContent) + Number(scoreElement.textContent);
+}
+
 btnNewGame.addEventListener('click', resetGame);
 btnRoleDice.addEventListener('click', roleDice);
+btnHold.addEventListener('click', hold);
