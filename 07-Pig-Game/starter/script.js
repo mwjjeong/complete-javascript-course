@@ -54,16 +54,18 @@ function updatePlayerCurrentScore(score) {
 }
 
 function changeActivePlayer() {
-  const player1 = document.querySelector('.player--0');
-  const player2 = document.querySelector('.player--1');
+  const activePlayerId = isActive(document.querySelector('.player--0')) ? 0 : 1;
+  const nonActivePlayerId = activePlayerId === 0 ? 1 : 0;
+  const activePlayer = document.querySelector(`.player--${activePlayerId}`);
+  const nonActivePlayer = document.querySelector(
+    `.player--${nonActivePlayerId}`
+  );
+  handOverActivePlayer(activePlayer, nonActivePlayer);
+  resetPlayerCurrentScore(activePlayer);
+}
 
-  if (player1.classList.contains('player--active')) {
-    handOverActivePlayer(player1, player2);
-    resetPlayerCurrentScore(player1);
-  } else {
-    handOverActivePlayer(player2, player1);
-    resetPlayerCurrentScore(player2);
-  }
+function isActive(player) {
+  return player.classList.contains('player--active');
 }
 
 function handOverActivePlayer(oldActivePlayer, newActivePlayer) {
