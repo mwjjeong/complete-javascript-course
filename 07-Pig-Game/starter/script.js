@@ -5,6 +5,10 @@ const btnRoleDice = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const dice = document.querySelector('.dice');
 
+btnNewGame.addEventListener('click', resetGame);
+btnRoleDice.addEventListener('click', roleDice);
+btnHold.addEventListener('click', hold);
+
 function resetGame() {
   hiddenDice();
   resetPlayerScore(document.querySelector('.player--0'));
@@ -78,7 +82,3 @@ function updateActivePlayerScore() {
   scoreElement.textContent =
     Number(currScoreElement.textContent) + Number(scoreElement.textContent);
 }
-
-btnNewGame.addEventListener('click', resetGame);
-btnRoleDice.addEventListener('click', roleDice);
-btnHold.addEventListener('click', hold);
