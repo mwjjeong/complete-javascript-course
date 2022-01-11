@@ -3,6 +3,7 @@
 const btnNewGame = document.querySelector('.btn--new');
 const btnRoleDice = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const dice = document.querySelector('.dice');
 
 function resetGame() {
   resetPlayerScore(document.querySelector('.player--0'));
@@ -21,7 +22,7 @@ function resetPlayerCurrentScore(player) {
 
 function roleDice() {
   const diceNum = getRandomNum(6);
-  document.querySelector('.dice').src = `dice-${diceNum}.png`;
+  dice.src = `dice-${diceNum}.png`;
   if (diceNum > 1) updatePlayerCurrentScore(diceNum);
   else changeActivePlayer();
 }
