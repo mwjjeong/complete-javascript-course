@@ -6,10 +6,15 @@ const btnHold = document.querySelector('.btn--hold');
 const dice = document.querySelector('.dice');
 
 function resetGame() {
+  hiddenDice();
   resetPlayerScore(document.querySelector('.player--0'));
   resetPlayerScore(document.querySelector('.player--1'));
   resetPlayerCurrentScore(document.querySelector('.player--0'));
   resetPlayerCurrentScore(document.querySelector('.player--1'));
+}
+
+function hiddenDice() {
+  if (!dice.classList.contains('hidden')) dice.classList.add('hidden');
 }
 
 function resetPlayerScore(player) {
