@@ -8,6 +8,7 @@ const dice = document.querySelector('.dice');
 btnNewGame.addEventListener('click', resetGame);
 btnRoleDice.addEventListener('click', roleDice);
 btnHold.addEventListener('click', hold);
+resetGame();
 
 function resetGame() {
   hiddenDice();
