@@ -17,6 +17,10 @@ function hiddenDice() {
   if (!dice.classList.contains('hidden')) dice.classList.add('hidden');
 }
 
+function showDice() {
+  if (dice.classList.contains('hidden')) dice.classList.remove('hidden');
+}
+
 function resetPlayerScore(player) {
   player.querySelector('.score').textContent = 0;
 }
@@ -26,6 +30,7 @@ function resetPlayerCurrentScore(player) {
 }
 
 function roleDice() {
+  showDice();
   const diceNum = getRandomNum(6);
   dice.src = `dice-${diceNum}.png`;
   if (diceNum > 1) updatePlayerCurrentScore(diceNum);
