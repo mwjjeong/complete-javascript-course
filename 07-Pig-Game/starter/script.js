@@ -74,14 +74,31 @@ function handOverActivePlayer(oldActivePlayer, newActivePlayer) {
 }
 
 function hold() {
-  updateActivePlayerScore();
-  changeActivePlayer();
+  const activePlayer = document.querySelector('.player--active');
+  const totalScore = calculateTotalScore(activePlayer);
+  updatePlayerScore(activePlayer, totalScore);
+
+  if (totalScore >= 100) finishGame(activePlayer);
+  else changeActivePlayer();
 }
 
-function updateActivePlayerScore() {
-  const activePlayer = document.querySelector('.player--active');
-  const currScoreElement = activePlayer.querySelector('.current-score');
-  const scoreElement = activePlayer.querySelector('.score');
-  scoreElement.textContent =
-    Number(currScoreElement.textContent) + Number(scoreElement.textContent);
+function calculateTotalScore(player) {
+  const currScoreElement = player.querySelector('.current-score');
+  const scoreElement = player.querySelector('.score');
+  return (
+    Number(currScoreElement.textContent) + Number(scoreElement.textContent)
+  );
+}
+
+function updatePlayerScore(player, score) {
+  const scoreElement = player.querySelector('.score');
+  scoreElement.textContent = score;
+}
+
+function finishGame(player) {
+  player.classList.add('player--winner');
+  player.classList.remove('player--active');
+  console.log(
+    `Finish! ${activePlayer.querySelector('.name').textContent} won!`
+  );
 }
