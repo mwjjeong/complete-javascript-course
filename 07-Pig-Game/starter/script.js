@@ -101,6 +101,7 @@ function updatePlayerScore(player, score) {
 }
 
 function finishGame(player) {
+  hiddenDice();
   player.classList.add('player--winner');
   player.classList.remove('player--active');
   console.log(`Finish! ${player.querySelector('.name').textContent} won!`);
