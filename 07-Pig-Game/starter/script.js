@@ -12,6 +12,8 @@ resetGame();
 
 function resetGame() {
   hiddenDice();
+  btnHold.classList.remove('hidden');
+  btnRoleDice.classList.remove('hidden');
   resetPlayerScore(document.querySelector('.player--0'));
   resetPlayerScore(document.querySelector('.player--1'));
   resetPlayerCurrentScore(document.querySelector('.player--0'));
@@ -98,7 +100,7 @@ function updatePlayerScore(player, score) {
 function finishGame(player) {
   player.classList.add('player--winner');
   player.classList.remove('player--active');
-  console.log(
-    `Finish! ${activePlayer.querySelector('.name').textContent} won!`
-  );
+  console.log(`Finish! ${player.querySelector('.name').textContent} won!`);
+  btnHold.classList.add('hidden');
+  btnRoleDice.classList.add('hidden');
 }
