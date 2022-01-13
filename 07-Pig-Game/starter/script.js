@@ -21,6 +21,8 @@ function resetGame() {
   resetPlayerScore(document.querySelector('.player--1'));
   resetPlayerCurrentScore(document.querySelector('.player--0'));
   resetPlayerCurrentScore(document.querySelector('.player--1'));
+  resetPlayerStatus();
+  finished = false;
 }
 
 function hiddenDice() {
@@ -37,6 +39,12 @@ function resetPlayerScore(player) {
 
 function resetPlayerCurrentScore(player) {
   player.querySelector('.current-score').textContent = 0;
+}
+
+function resetPlayerStatus() {
+  document.querySelector('.player--0').classList.remove('player--winner');
+  document.querySelector('.player--1').classList.remove('player--winner');
+  changeActivePlayer();
 }
 
 function roleDice() {
@@ -103,7 +111,6 @@ function updatePlayerScore(player, score) {
 function finishGame(player) {
   hiddenDice();
   player.classList.add('player--winner');
-  player.classList.remove('player--active');
   console.log(`Finish! ${player.querySelector('.name').textContent} won!`);
   finished = true;
 }
