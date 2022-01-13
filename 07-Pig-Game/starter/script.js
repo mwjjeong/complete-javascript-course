@@ -4,16 +4,19 @@ const btnNewGame = document.querySelector('.btn--new');
 const btnRoleDice = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const dice = document.querySelector('.dice');
+let finished = false;
 
 btnNewGame.addEventListener('click', resetGame);
-btnRoleDice.addEventListener('click', roleDice);
-btnHold.addEventListener('click', hold);
+btnRoleDice.addEventListener('click', () => {
+  if (!finished) roleDice();
+});
+btnHold.addEventListener('click', () => {
+  if (!finished) hold();
+});
 resetGame();
 
 function resetGame() {
   hiddenDice();
-  btnHold.classList.remove('hidden');
-  btnRoleDice.classList.remove('hidden');
   resetPlayerScore(document.querySelector('.player--0'));
   resetPlayerScore(document.querySelector('.player--1'));
   resetPlayerCurrentScore(document.querySelector('.player--0'));
@@ -101,6 +104,5 @@ function finishGame(player) {
   player.classList.add('player--winner');
   player.classList.remove('player--active');
   console.log(`Finish! ${player.querySelector('.name').textContent} won!`);
-  btnHold.classList.add('hidden');
-  btnRoleDice.classList.add('hidden');
+  finished = true;
 }
