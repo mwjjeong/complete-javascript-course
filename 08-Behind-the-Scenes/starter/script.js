@@ -106,7 +106,6 @@ other.printMinwooThis(); // the other object
 
 const f = minwoo.printThis;
 f(); // undefined (no owner object)
-*/
 
 var firstName = 'Hailey';
 
@@ -165,3 +164,57 @@ const addArrow = (a, b) => {
   a + b;
 };
 addArrow(2, 5);
+
+*/
+
+// primitive types
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age); // 30
+console.log(oldAge); // 31
+
+// reference type
+
+const me = {
+  name: 'Minwoo',
+  age: 31,
+};
+
+const friend = me;
+friend.age = 27;
+
+console.log(me); // changed!!
+console.log(friend);
+
+let lastName = 'Minwoo';
+let oldLastName = lastName;
+lastName = 'Hailey';
+console.log(lastName, oldLastName);
+
+const minwoo = {
+  name: 'Minwoo',
+  age: 27,
+};
+
+const other = minwoo;
+
+other.age += 1;
+
+console.log(minwoo);
+
+// minwoo = {}; // does not work
+
+// copying objects
+const minwoo2 = {
+  name: 'Minwoo',
+  age: 27,
+  family: ['1', '2'],
+};
+
+const other2 = Object.assign({}, minwoo2); // copy the object (shallow copy; first name)
+other2.age += 1;
+other2.family.push('a');
+console.log(minwoo2.age); // not changed
+console.log(other2.age);
+console.log(minwoo2.family); // changed
