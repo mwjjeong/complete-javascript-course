@@ -62,3 +62,46 @@ function zzztest() {
   var zztest = 1;
 }
 var zztest = 1;
+
+// Practice this keyword
+console.log(this); // global window object
+
+function inner() {
+  console.log(this); // undefined
+}
+
+inner();
+
+const innerArrow = () => {
+  console.log(this); // global window object (this keyword of parent scope)
+};
+
+innerArrow();
+
+const minwoo = {
+  year: 1995,
+  location: 'Seoul',
+  printThis: function () {
+    console.log(this); // the minwoo object
+  },
+  printThisArrow: () => {
+    console.log(this); // global window object
+  },
+  printThisToo() {
+    console.log(this); // the minwoo object
+  },
+};
+
+minwoo.printThis();
+minwoo.printThisArrow();
+minwoo.printThisToo();
+
+const other = {
+  year: 1991,
+  printMinwooThis: minwoo.printThis,
+};
+
+other.printMinwooThis(); // the other object
+
+const f = minwoo.printThis;
+f(); // undefined (no owner object)
