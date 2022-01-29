@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 function calcAge(birthYear) {
   const age = 2037 - birthYear;
   console.log(firstName);
@@ -105,3 +106,62 @@ other.printMinwooThis(); // the other object
 
 const f = minwoo.printThis;
 f(); // undefined (no owner object)
+*/
+
+var firstName = 'Hailey';
+
+const minwoo = {
+  firstName: 'Minwoo',
+  year: 1995,
+  printThis: function () {
+    console.log(this); // the object that call this method
+    console.log(this.firstName);
+
+    //solution 1
+    // self = this; // self or that...?
+    // const isMillenial = function () {
+    //   console.log(this); // undefined
+    //   console.log(self); // the object
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    //   // console.log(this.year >= 1981 && this.year <= 1996);
+    // };
+
+    // solution 2
+    const isMillenial = () => {
+      console.log(this); // the object (because the function is an arrow function)
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    isMillenial();
+  },
+
+  printThisArrow: () => {
+    console.log(this); // the window object
+    console.log(this.firstName); // Hailey
+  },
+};
+
+minwoo.printThis();
+minwoo.printThisArrow();
+
+// the arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments); // arguments array
+  return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 17, 12); // legal
+
+function add(a, b) {
+  console.log(arguments); // arguments array
+  return a + b;
+}
+
+add(2, 5);
+add(2, 5, 17, 12); // legal
+
+const addArrow = (a, b) => {
+  console.log(arguments); // not defined
+  a + b;
+};
+addArrow(2, 5);
