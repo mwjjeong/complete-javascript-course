@@ -19,7 +19,6 @@ function calcAge(birthYear) {
         return a + b;
       }
       // reassigning
-      output = 'New output';
     }
     console.log(firstName);
     console.log(millenial);
@@ -30,3 +29,36 @@ function calcAge(birthYear) {
 
 const firstName = 'Minwoo';
 calcAge(1995);
+
+// hoisting and TDZ
+// Variables
+console.log(a);
+
+var a = 1;
+const b = 2;
+let c = 3;
+
+// Functions
+console.log(typeof add);
+// console.log(add(1, 2)); // add is 'undefined'
+
+var add = (a, b) => a + b;
+
+console.log(add2(1, 2));
+function add2(a, b) {
+  return a + b;
+}
+
+// Pitfall Example
+if (!numProducts) deleteShoppingCart();
+
+var numProducts = 10;
+
+function deleteShoppingCart() {
+  console.log('Delete all!!!');
+}
+
+function zzztest() {
+  var zztest = 1;
+}
+var zztest = 1;
