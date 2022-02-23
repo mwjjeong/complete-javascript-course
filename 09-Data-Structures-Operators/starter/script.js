@@ -126,7 +126,6 @@ const {
 } = openingHours;
 console.log(o, c);
 
-*/
 
 // spread operator
 const arr1 = [1, 2, 3];
@@ -154,3 +153,23 @@ console.log(obj2);
 const copyObj = { ...obj1 };
 copyObj.a = 7;
 console.log(copyObj);
+
+*/
+// rest syntax
+// 1) collect the elements from the destructured array or object
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(others); // [3, 4, 5]
+
+const { x, ...otherObj } = { x: 1, y: 2, z: 3 };
+console.log(otherObj);
+
+// 2) function parameters
+function useRest(...others) {
+  console.log(others);
+  console.log(...others);
+}
+
+useRest('a', 1, 2, 3);
+useRest('apple');
+const [h, ...o] = 'apple';
+console.log(o);
