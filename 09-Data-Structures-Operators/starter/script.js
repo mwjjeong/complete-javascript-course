@@ -154,7 +154,6 @@ const copyObj = { ...obj1 };
 copyObj.a = 7;
 console.log(copyObj);
 
-*/
 // rest syntax
 // 1) collect the elements from the destructured array or object
 const [a, b, ...others] = [1, 2, 3, 4, 5];
@@ -173,3 +172,31 @@ useRest('a', 1, 2, 3);
 useRest('apple');
 const [h, ...o] = 'apple';
 console.log(o);
+
+*/
+
+// short circuiting using OR
+console.log(3 || 'minwoo');
+console.log(null || 'minwoo');
+console.log('minwoo' || null);
+console.log(undefined || null);
+console.log(null || undefined);
+
+// practical exmaple: set default value
+const obj = { a: 1, b: 2, c: 3 };
+const d = obj.d || 10;
+console.log(d);
+
+// short circuiting using AND (return the first falshy value)
+console.log(null && 'Minwoo');
+console.log(4 && 0);
+console.log(true && 1); // return the last element if there are no falshy value
+
+// practical example
+const obj2 = {
+  add: function (a, b) {
+    return a + b;
+  },
+};
+const result = obj2.add && obj2.add(1, 2);
+console.log(result);
