@@ -59,3 +59,70 @@ console.log(aa, bb, cc, dd);
 const [p = 1, q = 2, r = 3] = [4, 5];
 console.log(p, q, r); // 4, 5 ,3
 */
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({ startIndex = 0, mainIndex = 1, address, time }) {
+    console.log(
+      `Order delivered! ${this.starterMenu[startIndex]} and ${this.mainMenu[mainIndex]} to ${address} at ${time}`
+    );
+  },
+};
+
+restaurant.orderDelivery({
+  startIndex: 1,
+  mainIndex: 2,
+  time: '13:00',
+  address: 'Seoul',
+});
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+// Give another variablre name
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: categoryNames,
+} = restaurant;
+console.log(restaurantName, hours, categoryNames);
+
+// default value
+const { menu = [], categories: categoryNames2 } = restaurant;
+console.log(menu, categoryNames2);
+
+// mutating variables
+let a = 1;
+let b = 2;
+const obj = { a: 11, b: 22, c: 12 };
+// {a, b} = obj // Not possible!
+({ a, b } = obj);
+console.log(a, b);
+
+// nested object
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
