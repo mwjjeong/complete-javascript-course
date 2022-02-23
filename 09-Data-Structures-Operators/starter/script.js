@@ -58,7 +58,6 @@ console.log(aa, bb, cc, dd);
 // default values of array items
 const [p = 1, q = 2, r = 3] = [4, 5];
 console.log(p, q, r); // 4, 5 ,3
-*/
 
 const restaurant = {
   name: 'Classico Italiano',
@@ -126,3 +125,32 @@ const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
+
+*/
+
+// spread operator
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5];
+console.log(arr2); // [1, 2, 3, 4, 5]
+console.log(...arr2); // 1 2 3 4 5
+
+// shallow copy
+const newArr = [...arr1];
+newArr.push(6);
+console.log(...arr1);
+console.log(...newArr);
+
+// merge
+const mergeArr = [...arr1, ...arr2];
+console.log(...mergeArr);
+
+// iterables: array, string, map, set NOT object
+// the spread operator is possible on objects since ES2018
+const obj1 = { a: 1, b: 2, c: 3 };
+const obj2 = { d: 4, e: 5, ...obj1 };
+console.log(obj2);
+
+// shallow copy the object
+const copyObj = { ...obj1 };
+copyObj.a = 7;
+console.log(copyObj);
