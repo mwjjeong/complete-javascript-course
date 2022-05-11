@@ -57,7 +57,6 @@ const newPassport = function (person) {
 newPassport(minwoo);
 checkIn(flight, minwoo);
 
- */
 
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
@@ -84,3 +83,26 @@ const high5 = function () {
 document.body.addEventListener('click', high5);
 
 ['Jonas', 'Minwoo', 'Jin'].forEach(high5);
+
+ */
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeter = greet('Hey');
+greeter('Minwoo');
+greeter('Jin');
+
+greet('Hello')('Minwoo');
+
+// when it is useful
+
+// one arrow function returning another arrow function
+const greet2 = greeting => name => {
+  console.log(`${greeting} ${name}`);
+};
+
+greet2('Hello')('Minwoo');
