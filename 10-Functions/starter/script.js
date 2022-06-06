@@ -243,6 +243,7 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
 GOOD LUCK 😀
 */
+/*
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -275,3 +276,22 @@ const displayTestData = function (testData) {
 };
 console.log(displayTestData([5, 2, 3])('string'));
 console.log(displayTestData([1, 5, 3, 9, 6, 1])('string'));
+*/
+
+// Immediately Invoked Function Expression (IIFE)
+// Only called once
+(function () {
+  console.log('This will never run again');
+})();
+
+(() => console.log('This will also never run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+// console.log(isPrivate)
+console.log(notPrivate);
+
+// We don't need to use IIFE to create a scope
