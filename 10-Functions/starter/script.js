@@ -278,6 +278,7 @@ console.log(displayTestData([5, 2, 3])('string'));
 console.log(displayTestData([1, 5, 3, 9, 6, 1])('string'));
 */
 
+/*
 // Immediately Invoked Function Expression (IIFE)
 // Only called once
 (function () {
@@ -295,3 +296,74 @@ console.log(displayTestData([1, 5, 3, 9, 6, 1])('string'));
 console.log(notPrivate);
 
 // We don't need to use IIFE to create a scope
+
+// Closures
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a + 2);
+  };
+};
+
+const h = function () {
+  const b = 888;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+// Re-assigning f function
+h();
+f();
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+const perGroup = 1000; // Lower priority
+boardPassengers(180, 3);
+
+// Example 3
+const nested = function () {
+  const n = 100;
+  return function () {
+    return function () {
+      console.log(n);
+    };
+  };
+};
+
+const f1 = nested();
+const f2 = f1();
+f2();
+
+*/
