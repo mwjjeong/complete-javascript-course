@@ -248,4 +248,28 @@ const poll = {
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section 😃
   answers: new Array(4).fill(0),
+  registerNewAnswer: function () {
+    const txt = [this.question, ...this.options, '(Write option number)'].join(
+      '\n'
+    );
+    const option = parseInt(prompt(txt));
+    if (0 <= option && option <= 3) this.answers[option]++;
+    this.displayResults('string');
+  },
+  displayResults: function (type = 'array') {
+    if (type === 'array') console.log(this.answers);
+    else if (type === 'string')
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+  },
 };
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+const displayTestData1 = poll.displayResults.bind({ answers: [5, 2, 3] });
+const displayTestData2 = poll.displayResults.bind({
+  answers: [1, 5, 3, 9, 6, 1],
+});
+console.log(displayTestData1('string'));
+console.log(displayTestData2('string'));
