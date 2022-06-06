@@ -153,4 +153,57 @@ const flightData = [583, 'George Cooper'];
 book.apply(swiss, flightData);
 console.log(swiss);
 
-book.call(swiss, ...flightData);
+//book.call(swiss, ...flightData);
+
+// Bind Method
+const bookEW = book.bind(eurowings); // Return a new function
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+bookEW(23, 'Steven Williams');
+
+// Partial application
+// A part of arguments of the original function are already applied
+const bookEW23 = book.bind(eurowings, 23); // the first arg is already set
+bookEW23('Minwoo Jeong');
+bookEW23('Minwoo Jeong2');
+
+console.log(eurowings);
+
+// With Event Listener
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// This keyword will point to the lufthansa object
+lufthansa.buyPlane();
+
+// This keyword will point to the HTML element
+// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);
+
+// To be correct...
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application => Preset Parameters
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+// Use null if we don't need to care about this keyword (standard)
+// Order of arguments is important
+const addVAT = addTax.bind(null, 0.23);
+// addVAT = value => value + value * 0.23
+
+console.log(addVAT(1000));
+
+// Challenge
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const myAddVAT = addTaxRate(0.23);
+console.log(myAddVAT(1000));
