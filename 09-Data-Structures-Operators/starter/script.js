@@ -174,23 +174,36 @@ const [h, ...o] = 'apple';
 console.log(o);
 
 */
-
+// Use ANY data type, return ANY data type, short-circuiting
 // short circuiting using OR
-console.log(3 || 'minwoo');
+// If the first value is a truthy value, it will return the first value
+// Summary: return the first truthy value or return the last if there is no truthy value
+console.log('---- OR ----');
+console.log(3 || 'minwoo'); // Return first value
 console.log(null || 'minwoo');
+console.log('' || 'Jonnas');
+console.log(true || 0);
 console.log('minwoo' || null);
-console.log(undefined || null);
+console.log(undefined || null); // return second value even if the second is falsy
 console.log(null || undefined);
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+console.log(undefined || 0 || '' || null || undefined);
 
-// practical exmaple: set default value
+// practical example: set default value
 const obj = { a: 1, b: 2, c: 3 };
+// const d = obj.d ? obj.d : 10;
 const d = obj.d || 10;
 console.log(d);
 
-// short circuiting using AND (return the first falshy value)
+console.log('---- AND ----');
+
+// short circuiting using AND (return the first falsy value)
+console.log(0 && 'Minwoo');
+console.log('Minwoo' && 'Jonas');
 console.log(null && 'Minwoo');
 console.log(4 && 0);
-console.log(true && 1); // return the last element if there are no falshy value
+console.log(true && 1); // return the last element if there are no falsy value
+console.log('Hello' && 23 && null && 'Jonas');
 
 // practical example
 const obj2 = {
@@ -198,5 +211,10 @@ const obj2 = {
     return a + b;
   },
 };
+/*
+if (obj2.add) {
+  obj2.add(1, 2)
+}
+*/
 const result = obj2.add && obj2.add(1, 2);
 console.log(result);
