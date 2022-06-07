@@ -174,6 +174,7 @@ const [h, ...o] = 'apple';
 console.log(o);
 
 */
+/*
 // Use ANY data type, return ANY data type, short-circuiting
 // short circuiting using OR
 // If the first value is a truthy value, it will return the first value
@@ -216,5 +217,22 @@ if (obj2.add) {
   obj2.add(1, 2)
 }
 */
+/*
 const result = obj2.add && obj2.add(1, 2);
 console.log(result);
+*/
+
+// Nullish Coalescing Operator
+
+// practical example: set default value
+const obj = { a: 1, b: 2, c: 3 };
+// const d = obj.d ? obj.d : 10;
+obj.d = 0;
+const d = obj.d || 10; // 10, which is not what we intended to
+console.log(d);
+
+// Nullish Coalescing Operator
+// Nullish: null and undefined (not 0 or '')
+// Return the first that is not nullish
+const correctD = obj.d ?? 10;
+console.log(correctD);
