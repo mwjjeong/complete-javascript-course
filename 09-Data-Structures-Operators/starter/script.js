@@ -371,6 +371,25 @@ console.log(printGoals(...['Davies', 'Muller', 'Lewandowski', 'Kimmich']));
 console.log((team1 < team2 || 'team1') && 'team2');
 */
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+  [`day-${2 + 4}`]: {
+    open: 0,
+    close: 24,
+  },
+};
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -378,33 +397,24 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-  order: function (starterIndex, mainIndex) {
+  // 1. ES6 enhanced object literals
+  openingHours,
+
+  // 2. New method syntax
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 };
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+console.log(restaurant.openingHours);
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
 
-// Looping Arrays: for-of loop
-for (const item of menu) console.log(item);
+// // Looping Arrays: for-of loop
+// for (const item of menu) console.log(item);
 
-// when we need indexes
-for (const [i, item] of menu.entries()) {
-  console.log(`${i + 1}: ${item}`);
-}
+// // when we need indexes
+// for (const [i, item] of menu.entries()) {
+//   console.log(`${i + 1}: ${item}`);
+// }
 
-console.log([...menu.entries()]); // [index, element]
+// console.log([...menu.entries()]); // [index, element]
