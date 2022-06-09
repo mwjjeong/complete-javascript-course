@@ -406,6 +406,44 @@ const restaurant = {
   },
 };
 console.log(restaurant.openingHours);
+
+// console.log(restaurant.openingHours.mon.open);  // Error
+// Without optional chaining
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+if (restaurant.openingHours && restaurant.openingHours.fri)
+  console.log(restaurant.openingHours.fri.open);
+
+// With optional chaining
+console.log(restaurant.openingHours.mon?.open); // undefined
+console.log(restaurant.openingHours.fri?.open); // 11
+
+// Multiple optional chaining
+console.log(restaurant.openingHours?.mon?.open); // No Error
+
+// Real world example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed'; // with dynamic property key
+  console.log(`On ${day}, we open at ${open}.`);
+}
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.otherOrder?.(0, 1) ?? 'Method does not exist'); // Method does not exist
+
+// Array
+const users = [{ name: 'Minwoo', email: 'Hello@World.com' }];
+
+/*
+if (users.length > 0) console.log(users[0].name);
+else console.log('User array empty');
+*/
+
+console.log(users[0]?.name ?? 'User array empty');
+console.log(users[1]?.name ?? 'User array empty');
+
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // console.log(menu);
 
