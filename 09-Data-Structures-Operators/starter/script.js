@@ -385,10 +385,6 @@ const openingHours = {
     open: 0, // Open 24 hours
     close: 24,
   },
-  [`day-${2 + 4}`]: {
-    open: 0,
-    close: 24,
-  },
 };
 const restaurant = {
   name: 'Classico Italiano',
@@ -405,8 +401,33 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 };
-console.log(restaurant.openingHours);
 
+// Looping Objects
+
+// Property names
+const properties = Object.keys(openingHours); // Array of the keys
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of Object.keys(openingHours)) {
+  openStr += `${day}, `;
+  console.log(day);
+}
+console.log(openStr);
+
+// Property values
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}.`);
+}
+/*
 // console.log(restaurant.openingHours.mon.open);  // Error
 // Without optional chaining
 if (restaurant.openingHours && restaurant.openingHours.mon)
@@ -436,14 +457,14 @@ console.log(restaurant.otherOrder?.(0, 1) ?? 'Method does not exist'); // Method
 // Array
 const users = [{ name: 'Minwoo', email: 'Hello@World.com' }];
 
-/*
+
 if (users.length > 0) console.log(users[0].name);
 else console.log('User array empty');
-*/
+
 
 console.log(users[0]?.name ?? 'User array empty');
 console.log(users[1]?.name ?? 'User array empty');
-
+*/
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // console.log(menu);
 
