@@ -744,22 +744,15 @@ console.log(gameEvents);
 
 // 3.
 
-let prevEventTime = 0;
-let totalEventTerm = 0;
-
-for (const [time, _] of gameEvents) {
-  totalEventTerm += time - prevEventTime;
-  prevEventTime = time;
-}
-
+const lastEventTime = [...gameEvents.keys()].pop();
 console.log(
-  `An event happened, on average, every ${Math.floor(
-    totalEventTerm / gameEvents.size
-  )} minutes`
+  `An event happened, on average, every ${
+    lastEventTime / gameEvents.size
+  } minutes`
 );
 
 // 4.
-for (const [time, event] of gameEvents) {
-  const mark = time <= 45 ? '[FIRST HALF]' : '[SECOND HALF]';
-  console.log(`${mark} ${time}: ${event}`);
+for (const [min, event] of gameEvents) {
+  const mark = min <= 45 ? '[FIRST HALF]' : '[SECOND HALF]';
+  console.log(`${mark} ${min}: ${event}`);
 }
