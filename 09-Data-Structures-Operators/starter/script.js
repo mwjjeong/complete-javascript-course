@@ -505,6 +505,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 GOOD LUCK 😀
 */
 
+/*
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -573,3 +574,43 @@ for (const player of game.scored) {
 }
 
 console.log(scorers);
+*/
+
+// Sets (ES6)
+// A collection of unique values
+const ordersSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta']);
+console.log(ordersSet); // {'Pasta', 'Pizza', 'Risotto'}
+console.log(new Set('Minwoo'));
+console.log(new Set());
+
+// Methods of Set
+console.log(ordersSet.size);
+console.log(ordersSet.has('Bread'));
+console.log(ordersSet.has('Pizza'));
+
+// Only one element is added
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+console.log(ordersSet);
+
+ordersSet.delete('Risotto');
+ordersSet.delete('Risotto'); // Nothing happened
+console.log(ordersSet);
+
+// How to extract values? No way
+console.log(ordersSet[0]); // undefined
+
+//ordersSet.clear();
+//console.log(ordersSet); // Empty
+
+// Looping is also possible
+for (const order of ordersSet) console.log(order);
+
+// Usage Example: Remove duplicates
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(staffUnique.size);
+
+// How many types of letters
+console.log(new Set('Minwoo Jeong').size);
