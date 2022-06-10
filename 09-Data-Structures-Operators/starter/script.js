@@ -576,6 +576,7 @@ for (const player of game.scored) {
 console.log(scorers);
 */
 
+/*
 // Sets (ES6)
 // A collection of unique values
 const ordersSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta']);
@@ -614,3 +615,89 @@ console.log(staffUnique.size);
 
 // How many types of letters
 console.log(new Set('Minwoo Jeong').size);
+*/
+
+// Map (ES6)
+const rest = new Map();
+// set => update the map
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal')); // Returns a map
+
+// Chaining is also possible
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+// get method
+console.log(rest.get('name'));
+console.log(rest.get('true')); // undefined
+console.log(rest.get(true));
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// other methods
+console.log(rest.has('categories'));
+rest.delete(2);
+rest.set([1, 2], 'Test'); // set the address of the array as a key
+console.log(rest.size);
+// rest.clear();
+
+console.log(rest.get([1, 2])); // undefined
+
+const arr = [1, 2, 3];
+rest.set(arr, 'Test2');
+console.log(rest.get(arr)); // work!
+
+rest.set(document.querySelector('h1'), 'heading');
+console.log(rest.get(document.querySelector('h1')));
+console.log(rest);
+
+// Define a map with the new way
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'Go'],
+  [4, 'Javascript'],
+  ['Correct', 4],
+  [true, 'Correct :)'],
+  [false, 'Try again!'],
+]);
+console.log(question);
+
+// Convert object to map
+const openingHours = {
+  thu: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Iteration
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+// const answer = Number(prompt('Your answer'));
+const answer = 4;
+console.log(question.get(question.get('Correct') === answer));
+
+// convert map to array
+console.log([...question]);
+console.log([...question.entries()]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
