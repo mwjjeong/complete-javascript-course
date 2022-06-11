@@ -708,7 +708,7 @@ console.log([...question.values()]);
 ///////////////////////////////////////
 // Coding Challenge #3
 
-/* 
+/*
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
@@ -720,6 +720,7 @@ Let's continue with our football betting app! This time, we have a map with a lo
 GOOD LUCK 😀
 */
 
+/*
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
   [36, '🔁 Substitution'],
@@ -756,3 +757,182 @@ for (const [min, event] of gameEvents) {
   const mark = min <= 45 ? '[FIRST HALF]' : '[SECOND HALF]';
   console.log(`${mark} ${min}: ${event}`);
 }
+*/
+
+// String
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+};
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B237'[0]); // B
+
+console.log(airline.length); // Size of the string
+console.log('B237'.length);
+
+// Find index
+console.log(airline.indexOf('r')); // the first occurrence of the letter, 0-based
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+console.log(airline.indexOf('portugal'));
+
+// slice => return a new sliced string
+console.log(airline.slice(4)); // Start in the index 4
+console.log(airline.slice(4, 7));
+
+// Extract the first word
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // last word
+
+console.log(airline.slice(-2)); // the last two characters
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const lastCharacter = seat.slice(-1);
+  lastCharacter === 'B' || lastCharacter == 'E'
+    ? console.log('You got the middle seat 😁')
+    : console.log('You got lucky 😎');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+// When we call methods on a string
+// JS does this automatically, convert primitive string to object (Boxing)
+console.log(new String('Minwoo'));
+console.log(typeof new String('Minwoo')); // object
+
+console.log(typeof new String('Minwoo').slice(1)); // string
+
+// change capitalization
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = 'MiNWoo';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passenger, passengerCorrect);
+
+// Practical Example 1: Comparing email
+const email = 'hello@minwoo.io';
+const loginEmail = '  Hello@Minwoo.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim(); // remove whitespaces of sides
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// Replacing
+const priceKO = '288,977won';
+const priceUS = priceKO.replace('won', '$').replace(',', '.'); // chaining is possible
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to barding door 23, Boarding door 23!';
+console.log(announcement.replace('door', 'gate')); // change the first occurrence
+console.log(announcement.replaceAll('door', 'gate')); // change all occurrences
+console.log(announcement.replace(/door/g, 'gate')); // with regex
+
+// Booleans
+const plane2 = 'Airbus A320neo';
+console.log(plane2.includes('A320')); // true
+console.log(plane2.includes('Boeing')); // false
+console.log(plane2.startsWith('Air')); // true
+console.log(plane2.startsWith('Aib')); // false
+
+if (plane2.startsWith('Airbus') && plane2.endsWith('neo')) {
+  console.log('Part of the New Airbus family');
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  baggage.includes('knife') || baggage.includes('guns')
+    ? console.log('You are NOT allowed on board')
+    : console.log('Welcome aboard!');
+};
+
+checkBaggage('I have a laptop, some food and a pocket knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+
+// Working with strings part 3
+// Split
+console.log('a+very+nice+string'.split('+'));
+console.log('Minwoo Jeong'.split(' '));
+const [firstName, lastName] = 'Minwoo Jeong'.split(' ');
+
+// Join
+const newName = ['Mr.', , firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.toLowerCase().split(' ');
+  const newNames = [];
+  for (const n of names) {
+    // newNames.push(n[0].toUpperCase() + n.slice(1));
+    newNames.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(newNames.join(' '));
+};
+const passenger2 = 'jessica ann smith davis';
+capitalizeName(passenger2);
+capitalizeName('minwoo jeong');
+
+// Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(30, '+')); // pad '+' at the front until length 25 and do the same thing at the end until length 35
+console.log('Minwoo'.padStart(25, '+').padEnd(30, '+'));
+
+// Example
+const maskCreditCard = function (number) {
+  const str = number + ''; // type coercion
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(12345667771232));
+console.log(maskCreditCard('123456677712323132'));
+
+// Repeat
+const message2 = 'Bad weather... All Departures Delayed...';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'🛩'.repeat(n)}`);
+};
+planesInLine(10);
