@@ -61,6 +61,24 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = ''; // Clear the previous text content
+  // .textContent = 0
+
+  movements.forEach(function (mov, i) {
+    const movIndex = i + 1;
+    const movType = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${movType}">${movIndex} ${movType}</div>
+      <div class="movements__value">${mov}€</div>
+    </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+console.log(containerMovements.innerHTML);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -120,6 +138,7 @@ console.log('Minwoo'.at(-1));
 
 */
 
+/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) {
@@ -168,3 +187,4 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, key, set) {
   console.log(`${key}: ${value}`); // key === value
 });
+*/
