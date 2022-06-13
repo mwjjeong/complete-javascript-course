@@ -75,6 +75,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+/*
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // Slice method returns a new array
@@ -110,3 +111,18 @@ console.log([...arr, ...arr2]);
 
 // Join
 console.log(letters.join(' - '));
+*/
+
+// At method (ES2022)
+const arr = [23, 11, 54];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// when we want to get the last element...
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+// console.log(arr[-1]); // undefined
+console.log(arr.at(-1)); // More modern way
+
+console.log('Minwoo'.at(0));
+console.log('Minwoo'.at(-1));
