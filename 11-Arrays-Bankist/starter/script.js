@@ -65,14 +65,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
 /////////////////////////////////////////////////
 
 /*
@@ -111,7 +103,6 @@ console.log([...arr, ...arr2]);
 
 // Join
 console.log(letters.join(' - '));
-*/
 
 // At method (ES2022)
 const arr = [23, 11, 54];
@@ -126,3 +117,54 @@ console.log(arr.at(-1)); // More modern way
 
 console.log('Minwoo'.at(0));
 console.log('Minwoo'.at(-1));
+
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  const text =
+    movement > 0
+      ? `You deposited ${movement}`
+      : `You withdrew ${Math.abs(movement)}`;
+  console.log(`Movement ${i + 1}: ${text}`);
+}
+
+// Callback function
+// forEach passes in: the current element, index, the entire array
+// The order is important
+console.log('---- FOREACH ----');
+movements.forEach(function (mov, i, arr) {
+  const text =
+    mov > 0 ? `You deposited ${mov}` : `You withdrew ${Math.abs(mov)}`;
+  console.log(`Movement ${i + 1}: ${text}`);
+});
+
+// 0: function(200)
+// 1: function(450)
+// 2: function(400)
+// ...
+
+// for loop vs for each
+// break, continue statements do not works in forEach
+
+// forEach for Map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// forEach for Set
+const currenciesUnique = new Set(currencies.keys());
+console.log(currenciesUnique);
+
+// 'key' is redundant
+currenciesUnique.forEach(function (value, key, set) {
+  console.log(`${key}: ${value}`); // key === value
+});
