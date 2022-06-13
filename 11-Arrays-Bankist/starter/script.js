@@ -74,3 +74,39 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// Slice method returns a new array
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2));
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -2));
+
+// Shallow copy
+console.log(arr.slice());
+console.log([...arr]);
+
+// Splice => Mutate the original array
+// first argument: start index, second argument: # elements that will be deleted
+// Use to simply remove elements from the array
+//console.log(arr.splice(2)); // ['c', 'd', 'e']
+console.log(arr.splice(-1)); // Remove the last element and return the removed element
+console.log(arr);
+arr.splice(1, 2);
+console.log(arr);
+
+// Reverse => Mutate the original array
+arr = [1, 2, 3, 4, 5];
+const arr2 = [6, 7, 8, 9, 10];
+console.log(arr2.reverse());
+console.log(arr2);
+
+// Concat
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+// Join
+console.log(letters.join(' - '));
