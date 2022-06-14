@@ -90,6 +90,13 @@ const createUsernames = function (accounts) {
 };
 
 createUsernames(accounts);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+  console.log(balance);
+};
+calcDisplayBalance(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -282,6 +289,7 @@ console.log(movementsDescriptions);
 // to show elements
 */
 
+/*
 // filter method
 // filters elements that satisfy the condition
 // remains elements that satisfy the condition
@@ -299,3 +307,30 @@ const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
 
 // multiple arguments (mov, i, arr) is also possible
+*/
+
+// Reduce method
+// array - > one single value
+console.log(movements);
+// first argument of the callback fn: accumulator (snowball)
+// second argument of the reduce method: initial value of the accumulator
+const balance = movements.reduce((acc, cur, i, arr) => acc + cur, 0);
+console.log(balance);
+
+const balance2 = movements.reduce((acc, cur, i, arr) => {
+  console.log(`Iteration ${i}: ${acc}`);
+  return acc + cur;
+}, 0);
+console.log(balance2);
+
+// manual for loop
+let balance3 = 0;
+for (const mov of movements) balance3 += mov;
+console.log(balance3);
+
+// Maximum value
+const maxValue = movements.reduce(
+  (acc, mov) => Math.max(acc, mov),
+  movements[0]
+);
+console.log(maxValue);
