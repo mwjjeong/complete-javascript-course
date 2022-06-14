@@ -78,6 +78,18 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const user = 'Steven Thomas Williams'; // stw
+const createUsernames = function (accounts) {
+  accounts.forEach(function (account) {
+    account.username = account.owner
+      .toLowerCase()
+      .split(' ')
+      .map(word => word[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -230,6 +242,7 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 */
 
+/*
 // data transformation
 // a new array or a single value from the other array
 const arr = [3, 1, 4, 3, 2];
@@ -267,3 +280,4 @@ console.log(movementsDescriptions);
 // forEach vs Map
 // Map -> return value to build a new array vs forEach -> printValue (side effect)
 // to show elements
+*/
