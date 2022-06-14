@@ -137,8 +137,8 @@ console.log('Minwoo'.at(-1));
 
 */
 
-/*
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+/*
 
 // for (const movement of movements) {
 for (const [i, movement] of movements.entries()) {
@@ -209,6 +209,7 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
+/*
 function checkDogs(dogsJulia, dogsKate) {
   const copyDogsJulia = dogsJulia.slice();
   copyDogsJulia.splice(0, 1);
@@ -227,3 +228,42 @@ function checkDogs(dogsJulia, dogsKate) {
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+*/
+
+// data transformation
+// a new array or a single value from the other array
+const arr = [3, 1, 4, 3, 2];
+console.log(arr.map(v => v * 2));
+console.log(arr.filter(v => v > 2)); // remain 'true' element
+console.log(arr.reduce((acc, v) => acc + v, 0)); // array => single value (reduced value)
+
+// map method
+// create a new array which element has gotten from the corresponding element of the old array
+const eurToUsd = 1.1;
+// more modern way
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+const movementsUSDArrow = movements.map(mov => mov * eurToUsd);
+console.log(movements);
+console.log(movementsUSD);
+console.log(movementsUSDArrow);
+
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+// map method with array indexes
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
+
+// forEach vs Map
+// Map -> return value to build a new array vs forEach -> printValue (side effect)
+// to show elements
