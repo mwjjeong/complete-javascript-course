@@ -281,3 +281,21 @@ console.log(movementsDescriptions);
 // Map -> return value to build a new array vs forEach -> printValue (side effect)
 // to show elements
 */
+
+// filter method
+// filters elements that satisfy the condition
+// remains elements that satisfy the condition
+const deposits = movements.filter(mov => mov > 0);
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) {
+  if (mov > 0) depositsFor.push(mov);
+}
+console.log(depositsFor);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
+
+// multiple arguments (mov, i, arr) is also possible
