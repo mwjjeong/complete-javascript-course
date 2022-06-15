@@ -419,6 +419,7 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
+/*
 const calcAverageHumanAge = function (ages) {
   return ages
     .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
@@ -428,3 +429,28 @@ const calcAverageHumanAge = function (ages) {
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
+
+// find method
+// retrieve an element based on the condition
+// retrieve the first value that satisfies the condition
+// .vs filter 1. filter returns a new array 2. find returns a single value
+
+console.log(movements.find(mov => mov < 0));
+console.log(accounts);
+
+// Usage
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+// goal: find only one element that satisfies the condition
+
+// challenge
+let accountFor;
+for (const account of accounts) {
+  if (account.owner === 'Jessica Davis') {
+    accountFor = account;
+    break;
+  }
+}
+console.log(accountFor);
