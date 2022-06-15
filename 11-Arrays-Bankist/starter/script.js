@@ -97,6 +97,25 @@ const calcDisplayBalance = function (movements) {
   console.log(balance);
 };
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const income = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  const outcome = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  const interestRate = 1.2;
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(mov => (mov * interestRate) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, mov) => acc + mov);
+  labelSumIn.textContent = `${income}€`;
+  labelSumOut.textContent = `${Math.abs(outcome)}€`;
+  labelSumInterest.textContent = `${interest}€`;
+};
+calcDisplaySummary(account1.movements);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -356,6 +375,7 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
+/*
 const calcAverageHumanAge = function (ages) {
   // 1.
   const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
@@ -369,3 +389,20 @@ const calcAverageHumanAge = function (ages) {
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
+
+/*
+const eurToUsd = 1.1;
+// PIPELINE
+// hard to debug if it is too long
+// use the third parameter of the callback function (current array) to debug
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  //.map(mov => mov * eurToUsd)
+  .map((mov, _, arr) => {
+    // mov * eurToUsd;
+    console.log(arr);
+  })
+  .reduce((acc, mov) => acc + mov);
+console.log(totalDepositsUSD);
+*/
