@@ -61,6 +61,18 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const user = 'Steven Thomas Williams'; // stw
+const createUsernames = function (accounts) {
+  accounts.forEach(function (account) {
+    account.username = account.owner
+      .toLowerCase()
+      .split(' ')
+      .map(word => word[0])
+      .join('');
+  });
+};
+createUsernames(accounts);
+
 const displayMovements = function (movements) {
   containerMovements.innerHTML = ''; // Clear the previous text content
   // .textContent = 0
@@ -76,46 +88,60 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
-
-const user = 'Steven Thomas Williams'; // stw
-const createUsernames = function (accounts) {
-  accounts.forEach(function (account) {
-    account.username = account.owner
-      .toLowerCase()
-      .split(' ')
-      .map(word => word[0])
-      .join('');
-  });
-};
-
-createUsernames(accounts);
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
-  console.log(balance);
+  labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const income = movements
+const calcDisplaySummary = function (account) {
+  const income = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  const outcome = movements
+  const outcome = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  const interestRate = 1.2;
-  const interest = movements
+  const interest = account.movements
     .filter(mov => mov > 0)
-    .map(mov => (mov * interestRate) / 100)
+    .map(mov => (mov * account.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, mov) => acc + mov);
   labelSumIn.textContent = `${income}€`;
   labelSumOut.textContent = `${Math.abs(outcome)}€`;
   labelSumInterest.textContent = `${interest}€`;
 };
-calcDisplaySummary(account1.movements);
+
+// Event Handler
+let currentAccount;
+
+const login = function (e) {
+  // Prevent form from submitting
+  e.preventDefault();
+  const username = inputLoginUsername.value;
+  const pin = Number(inputLoginPin.value);
+  const account = accounts.find(account => account.username === username);
+  console.log(account);
+
+  if (account?.pin === pin) {
+    currentAccount = account;
+    // Display UI and welcome message
+    containerApp.style.opacity = 100;
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    // Clear the input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur(); // remove the focusing
+
+    displayMovements(currentAccount.movements);
+    calcDisplayBalance(currentAccount.movements);
+    calcDisplaySummary(currentAccount);
+    console.log('Success to login');
+  } else console.log('Correct the pin number');
+};
+
+btnLogin.addEventListener('click', login);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -436,6 +462,7 @@ console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 // retrieve the first value that satisfies the condition
 // .vs filter 1. filter returns a new array 2. find returns a single value
 
+/*
 console.log(movements.find(mov => mov < 0));
 console.log(accounts);
 
@@ -454,3 +481,4 @@ for (const account of accounts) {
   }
 }
 console.log(accountFor);
+*/
