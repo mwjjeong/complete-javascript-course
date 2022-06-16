@@ -580,6 +580,7 @@ console.log(movements.every(checkDeposit));
 console.log(movements.filter(checkDeposit));
 */
 
+/*
 // flat
 // remove the nested arrays and flattened
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
@@ -606,3 +607,27 @@ const overallBalance2 = accounts
   .flatMap(account => account.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
+*/
+
+// sorting arrays
+// Strings
+const owners = ['Minwoo', 'Jonas', 'Adam', 'Zck'];
+console.log(owners.sort()); // Mutate the original array
+console.log(owners);
+
+// Number
+// sort() method sorts the array based on string...
+// convert into strings and sort based on the strings
+console.log(movements);
+// console.log(movements.sort()); // not expected
+
+// with callback function
+// return < 0, a, b (keep order)
+// return > 0, b, a (switch order)
+// ascending
+movements.sort((a, b) => a - b); // a, b as two consecutive numbers in the array
+console.log(movements);
+
+// descending order
+movements.sort((a, b) => b - a);
+console.log(movements);
