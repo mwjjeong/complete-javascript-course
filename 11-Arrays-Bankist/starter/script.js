@@ -176,6 +176,18 @@ const transfer = function (e) {
   updateUI(currentAccount);
 };
 
+const requestLoan = function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  inputLoanAmount.value = '';
+  inputLoanAmount.blur();
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+};
+
 const closeAccount = function (e) {
   e.preventDefault();
   const username = inputCloseUsername.value;
@@ -195,6 +207,7 @@ const closeAccount = function (e) {
 
 btnLogin.addEventListener('click', login);
 btnTransfer.addEventListener('click', transfer);
+btnLoan.addEventListener('click', requestLoan);
 btnClose.addEventListener('click', closeAccount);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -540,6 +553,7 @@ console.log(accountFor);
 // findIndex
 // returns index of the found element
 
+/*
 console.log(movements);
 
 // EQUALITY
@@ -551,3 +565,4 @@ console.log(movements.some(mov => mov === -130));
 // return true if there is any value that satisfies such condition
 const anyDeposits = movements.some(mov => mov > 1500);
 console.log(anyDeposits);
+*/
