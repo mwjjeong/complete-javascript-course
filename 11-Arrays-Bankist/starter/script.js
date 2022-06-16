@@ -566,3 +566,14 @@ console.log(movements.some(mov => mov === -130));
 const anyDeposits = movements.some(mov => mov > 1500);
 console.log(anyDeposits);
 */
+
+// Every method
+// return true if all of the elements satisfy the condition
+console.log(movements.every(mov => mov > 0)); // false
+console.log(movements.every(mov => mov !== 0)); // true
+
+// Seperate callback (DRY principle)
+const checkDeposit = mov => mov > 0;
+console.log(movements.some(checkDeposit));
+console.log(movements.every(checkDeposit));
+console.log(movements.filter(checkDeposit));
