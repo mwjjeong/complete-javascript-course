@@ -567,6 +567,7 @@ const anyDeposits = movements.some(mov => mov > 1500);
 console.log(anyDeposits);
 */
 
+/*
 // Every method
 // return true if all of the elements satisfy the condition
 console.log(movements.every(mov => mov > 0)); // false
@@ -577,3 +578,31 @@ const checkDeposit = mov => mov > 0;
 console.log(movements.some(checkDeposit));
 console.log(movements.every(checkDeposit));
 console.log(movements.filter(checkDeposit));
+*/
+
+// flat
+// remove the nested arrays and flattened
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+// flat method only goes one level deep when flattening the array
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat()); // [Array(2), 3, 4, Array(2), 7, 8]
+
+// two levels deep
+console.log(arrDeep.flat(2)); // [Array(2), 3, 4, Array(2), 7, 8]
+
+// more practical example
+// map -> flat is pretty common
+const overallBalance = accounts
+  .map(account => account.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// flatMap (map + flat)
+// only goes one level deep
+const overallBalance2 = accounts
+  .flatMap(account => account.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
