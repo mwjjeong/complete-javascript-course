@@ -539,3 +539,15 @@ console.log(accountFor);
 
 // findIndex
 // returns index of the found element
+
+console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130)); // true
+
+// Condition
+console.log(movements.some(mov => mov === -130));
+
+// return true if there is any value that satisfies such condition
+const anyDeposits = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
