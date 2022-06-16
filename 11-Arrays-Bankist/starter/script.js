@@ -111,6 +111,17 @@ const calcDisplaySummary = function (account) {
   labelSumInterest.textContent = `${interest}€`;
 };
 
+const updateUI = function (account) {
+  displayMovements(account.movements);
+  calcDisplayBalance(account);
+  calcDisplaySummary(account);
+};
+
+const hideUI = function () {
+  containerApp.style.opacity = 0;
+  labelWelcome.textContent = 'Log in to get started';
+};
+
 // Event Handler
 let currentAccount;
 
@@ -165,13 +176,26 @@ const transfer = function (e) {
   updateUI(currentAccount);
 };
 
-const updateUI = function (account) {
-  displayMovements(account.movements);
-  calcDisplayBalance(account);
-  calcDisplaySummary(account);
+const closeAccount = function (e) {
+  e.preventDefault();
+  const username = inputCloseUsername.value;
+  const pin = Number(inputClosePin.value);
+
+  inputCloseUsername.value = inputClosePin.value = '';
+  inputClosePin.blur(); // remove the focusing
+
+  if (currentAccount.pin === pin && currentAccount.username === username) {
+    const accountIdx = accounts.findIndex(
+      account => account.username === username
+    );
+    accounts.splice(accountIdx, 1);
+    hideUI();
+  } else console.log('Check the credentials');
 };
+
 btnLogin.addEventListener('click', login);
 btnTransfer.addEventListener('click', transfer);
+btnClose.addEventListener('click', closeAccount);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -512,3 +536,6 @@ for (const account of accounts) {
 }
 console.log(accountFor);
 */
+
+// findIndex
+// returns index of the found element
