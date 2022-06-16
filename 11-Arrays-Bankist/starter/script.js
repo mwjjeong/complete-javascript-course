@@ -141,7 +141,37 @@ const login = function (e) {
   } else console.log('Correct the pin number');
 };
 
+const transfer = function (e) {
+  e.preventDefault();
+  const transferTo = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  const amount = Number(inputTransferAmount.value);
+  const balance = Number(labelBalance.textContent.slice(0, -1));
+
+  inputTransferTo.value = inputTransferAmount.value = '';
+  inputTransferAmount.blur();
+
+  if (!transferTo) {
+    console.log('Invalid user');
+    return;
+  }
+
+  if (balance < amount) {
+    console.log('The balance is not enough.');
+    return;
+  }
+
+  currentAccount.movements.push(-amount);
+  transferTo.movements.push(amount);
+
+  displayMovements(currentAccount.movements);
+  calcDisplayBalance(currentAccount.movements);
+  calcDisplaySummary(currentAccount);
+};
+
 btnLogin.addEventListener('click', login);
+btnTransfer.addEventListener('click', transfer);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
