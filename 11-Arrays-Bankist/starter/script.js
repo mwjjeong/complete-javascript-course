@@ -89,9 +89,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (account) {
+  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${account.balance}€`;
 };
 
 const calcDisplaySummary = function (account) {
@@ -134,9 +134,7 @@ const login = function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur(); // remove the focusing
 
-    displayMovements(currentAccount.movements);
-    calcDisplayBalance(currentAccount.movements);
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount);
     console.log('Success to login');
   } else console.log('Correct the pin number');
 };
@@ -147,29 +145,31 @@ const transfer = function (e) {
     acc => acc.username === inputTransferTo.value
   );
   const amount = Number(inputTransferAmount.value);
-  const balance = Number(labelBalance.textContent.slice(0, -1));
+  const balance = currentAccount.balance;
 
   inputTransferTo.value = inputTransferAmount.value = '';
   inputTransferAmount.blur();
 
-  if (!transferTo) {
-    console.log('Invalid user');
-    return;
-  }
-
-  if (balance < amount) {
-    console.log('The balance is not enough.');
+  if (
+    !transferTo ||
+    transferTo.username === currentAccount.username ||
+    amount <= 0 ||
+    balance < amount
+  ) {
+    console.log('Invalid Transfer');
     return;
   }
 
   currentAccount.movements.push(-amount);
   transferTo.movements.push(amount);
-
-  displayMovements(currentAccount.movements);
-  calcDisplayBalance(currentAccount.movements);
-  calcDisplaySummary(currentAccount);
+  updateUI(currentAccount);
 };
 
+const updateUI = function (account) {
+  displayMovements(account.movements);
+  calcDisplayBalance(account);
+  calcDisplaySummary(account);
+};
 btnLogin.addEventListener('click', login);
 btnTransfer.addEventListener('click', transfer);
 /////////////////////////////////////////////////
