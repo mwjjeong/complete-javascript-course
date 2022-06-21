@@ -322,7 +322,7 @@ currenciesUnique.forEach(function (value, key, set) {
 ///////////////////////////////////////
 // Coding Challenge #1
 
-/* 
+/*
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
 
 Create a function 'checkDogs', which accepts 2 arrays of dog's ages ('dogsJulia' and 'dogsKate'), and does the following things:
@@ -452,7 +452,7 @@ console.log(maxValue);
 ///////////////////////////////////////
 // Coding Challenge #2
 
-/* 
+/*
 Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
 
 Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
@@ -503,7 +503,7 @@ console.log(totalDepositsUSD);
 ///////////////////////////////////////
 // Coding Challenge #3
 
-/* 
+/*
 Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
 
 TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
@@ -613,11 +613,11 @@ console.log(overallBalance2);
 // Strings
 const owners = ['Minwoo', 'Jonas', 'Adam', 'Zck'];
 console.log(owners.sort()); // Mutate the original array
-console.log(owners);
+console.log(owners); // the elements were sorted
 
 // Number
-// sort() method sorts the array based on string...
-// convert into strings and sort based on the strings
+// sort() method sorts the array based on the string...
+// convert everything to string and sort based on the strings
 console.log(movements);
 // console.log(movements.sort()); // not expected
 
