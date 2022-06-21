@@ -643,6 +643,7 @@ movements.sort((a, b) => b - a);
 console.log(movements);
 */
 
+/*
 // Programmatically create and fill an array
 
 // array with data that already defined
@@ -689,3 +690,62 @@ labelBalance.addEventListener('click', function () {
   );
   console.log(movements2);
 });
+*/
+
+// Array methods practice
+
+// 1.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(bankDepositSum);
+
+// 2.
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, curr) => count + (curr >= 1000 ? 1 : 0), 0);
+console.log(numDeposits1000);
+
+// 3. reduce method with the composite type (object)
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, curr) => {
+      //   curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+      sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+console.log(deposits, withdrawals);
+
+// 4. convert any string to title case
+// this is a nice title => This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str.replace(str[0], str[0].toUpperCase());
+  const words = title.toLowerCase().split(' ');
+  const exceptions = [
+    'a',
+    'an',
+    'the',
+    'and',
+    'but',
+    'or',
+    'on',
+    ' in',
+    'with',
+  ];
+  return capitalize(
+    words
+      .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+      .join(' ')
+  );
+};
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('and here is another title with an EXAMPLE'));
