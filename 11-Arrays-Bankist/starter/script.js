@@ -73,11 +73,12 @@ const createUsernames = function (accounts) {
 };
 createUsernames(accounts);
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''; // Clear the previous text content
   // .textContent = 0
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach(function (mov, i) {
     const movIndex = i + 1;
     const movType = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
@@ -124,6 +125,7 @@ const hideUI = function () {
 
 // Event Handler
 let currentAccount;
+let sort = false;
 
 const login = function (e) {
   // Prevent form from submitting
@@ -205,10 +207,17 @@ const closeAccount = function (e) {
   } else console.log('Check the credentials');
 };
 
+const sortMovement = function (e) {
+  e.preventDefault();
+  sort = ~sort;
+  displayMovements(currentAccount.movements, sort);
+};
+
 btnLogin.addEventListener('click', login);
 btnTransfer.addEventListener('click', transfer);
 btnLoan.addEventListener('click', requestLoan);
 btnClose.addEventListener('click', closeAccount);
+btnSort.addEventListener('click', sortMovement);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -609,6 +618,7 @@ const overallBalance2 = accounts
 console.log(overallBalance2);
 */
 
+/*
 // sorting arrays
 // Strings
 const owners = ['Minwoo', 'Jonas', 'Adam', 'Zck'];
@@ -631,3 +641,4 @@ console.log(movements);
 // descending order
 movements.sort((a, b) => b - a);
 console.log(movements);
+*/
