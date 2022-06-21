@@ -642,3 +642,50 @@ console.log(movements);
 movements.sort((a, b) => b - a);
 console.log(movements);
 */
+
+// Programmatically create and fill an array
+
+// array with data that already defined
+const arr = [1, 2, 3, 4, 5];
+console.log([1, 2, 3, 4, 5]);
+console.log(new Array([1, 2, 3, 4, 5]));
+
+// empty method
+const x = new Array(7); // the argument is the array length
+console.log(x); // [empty * 7]
+console.log(x[0]); // undefined
+console.log(x.map(() => 5)); // [empty * 7] (does not work)
+
+// fill method (only one usage to use the empty array)
+// x.fill(1);  // mutate the array
+x.fill(1, 3, 6); // value, start, end (excluded)
+console.log(x);
+
+arr.fill(23, 2, 4); // 23 from 2 to 3
+console.log(arr);
+
+// array.from
+const arr2 = Array.from({ length: 7 }, () => 1);
+console.log(arr2); // [1, 1, 1, 1, 1,1, 1]
+
+// the callback function is like the map method
+const arr3 = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(arr3);
+
+// Array.from => convert iterables (strings, maps, sets) to arrays
+
+// Practical Example
+// NodeList => Array
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(document.querySelectorAll('.movements__value'));
+  console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+
+  // Other method: use spread operator
+  const movements2 = [...document.querySelectorAll('.movements__value')].map(
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movements2);
+});
